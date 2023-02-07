@@ -1,15 +1,16 @@
 {
   "ts-node": {
-    "files": true
+    "files": true,
+    "esm": true
   },
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-    "target": "es2021" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "lib": [
       "es2021",
       "esnext"
     ] /* Specify library files to be included in the compilation. */,
-    "module": "es2020" /* Specify what module code is generated. */,
+    "module": "ES2020" /* Specify what module code is generated. */,
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
     "rootDir": "./src" /* Specify the root folder within your source files. */ /* Allow multiple folders to be treated as one when resolving modules. */,
     "typeRoots": [

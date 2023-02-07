@@ -8,7 +8,10 @@
     "debug": "nodemon --exec \"node --inspect-brk=0.0.0.0:9229 --require ts-node/register src/index.ts\"",
     "format": "prettier \"./src/**/*.{ts}\" --write",
     "lint": "eslint \"./src/**/*.ts\" --fix",
-    "build": "tsc --project ./"
+    "build": "tsc --project ./",
+    "dev": "nodemon --exec ts-node --experimentalSpecifierResolution node",
+    "node:ts": "node --experimental-specifier-resolution=node --loader ts-node/esm",
+    "node:esm": "node --experimental-specifier-resolution=node"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +22,10 @@
     "@typescript-eslint/parser": "^5.51.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
+    "nodemon": "^2.0.20",
     "prettier": "^2.8.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
-  }
+  },
+  "type": "module"
 }
