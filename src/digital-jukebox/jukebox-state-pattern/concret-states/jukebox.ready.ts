@@ -1,29 +1,27 @@
 import { JukeBoxState, JukeBoxStateName } from "../jukeboxState";
+import { JukeBoxIsPaused } from "./jukebox.pause";
+import { JukeBoxIsPlaying } from "./jukebox.play";
 
 export class JukeBoxIsReady extends JukeBoxState {
-  constructor(
-    private stopState: JukeBoxState,
-    private startState: JukeBoxState
-  ) {
-    super();
-    this.stateName = JukeBoxStateName.READY;
-  }
-
   public play(): void {
     this.playerContext.player.startPlayBack();
-    this.playerContext.changeState(this.startState);
+    this.playerContext.changeState(new JukeBoxIsPlaying());
   }
 
   public pause(): void {
-    this.playerContext.changeState(this.stopState);
+    this.playerContext.changeState(new JukeBoxIsPaused());
   }
   public prevSong(): void {
     this.playerContext.player.previousSong();
-    this.playerContext.changeState(this.startState);
+    this.playerContext.changeState(new JukeBoxIsPlaying());
   }
 
   public nextSong(): void {
     this.playerContext.player.nextSong();
-    this.playerContext.changeState(this.startState);
+    this.playerContext.changeState(new JukeBoxIsPlaying());
+  }
+
+  get name() {
+    return JukeBoxStateName.READY;
   }
 }

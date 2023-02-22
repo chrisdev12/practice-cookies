@@ -1,3 +1,4 @@
+import { randomInt } from "crypto";
 import { ISong } from "../models/song";
 import { ISongRepository } from "../repository/songRepository";
 
@@ -17,12 +18,28 @@ export class DefaultAudioPlayer implements IJukeBoxPlayer {
   private playerSongs: ISong[] = [];
 
   constructor(private songRepository: ISongRepository) {
-    this.playerSongs = this.songRepository.getAll(15);
+    this.playerSongs = this.songRepository.getAll(30);
+  }
+
+  randomizeSongs(limit: number): ISong[] {
+    return this.playerSongs
+      .map((song) => ({
+        song,
+        randomOrder: randomInt(1000),
+      }))
+      .sort((a, b) => a.randomOrder - b.randomOrder)
+      .slice(0, limit)
+      .map(({ song }) => song);
   }
 
   turnOn(): void {
-    this.playerSongs = [...this.playerSongs].slice(0, 5);
-    this.logger(this.playerSongs);
+    this.playerSongs = this.randomizeSongs(5);
+    this.logger(
+      `Audio player is turn on. ${this.playerSongs.length} have been randomly loaded`
+    );
+    this.playerSongs.forEach((song, index) => {
+      this.logger(`${index + 1}. ${song.name} By ${song.artist}`);
+    });
   }
 
   turnOff(): void {

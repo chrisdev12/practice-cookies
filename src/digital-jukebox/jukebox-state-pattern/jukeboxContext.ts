@@ -23,6 +23,7 @@ export class JukeboxContext implements IJukeBoxContext {
   changeState(state: JukeBoxState): void {
     console.log(`transitig to ${state.name}`);
     this.state = state;
+    this.state.setContext(this);
   }
 
   off() {
@@ -34,7 +35,6 @@ export class JukeboxContext implements IJukeBoxContext {
   }
 
   play() {
-    if (this.isPlayerPaused) throw Error("disabled option");
     this.state.play();
   }
 
@@ -43,12 +43,10 @@ export class JukeboxContext implements IJukeBoxContext {
   }
 
   nextSong() {
-    if (this.isPlayerPaused) throw Error("disabled option");
     this.state.nextSong();
   }
 
   prevSong() {
-    if (this.isPlayerPaused) throw Error("disabled option");
     this.state.prevSong();
   }
 

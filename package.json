@@ -11,7 +11,8 @@
     "build": "tsc --project ./",
     "dev": "nodemon --exec ts-node --experimentalSpecifierResolution node",
     "node:ts": "node --experimental-specifier-resolution=node --loader ts-node/esm",
-    "node:esm": "node --experimental-specifier-resolution=node"
+    "node:esm": "node --experimental-specifier-resolution=node",
+    "jukebox": "npm run node:ts ./src/digital-jukebox/index"
   },
   "keywords": [],
   "author": "",
